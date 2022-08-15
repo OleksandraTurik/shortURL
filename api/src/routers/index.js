@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const Urls = require('./schemas/urls');
+const Urls = require('../db/models/urls');
 
 const router = Router();
 router.get('/:urlId', async (request, response) => {
@@ -16,6 +16,10 @@ router.get('/:urlId', async (request, response) => {
     console.log(error);
     response.status(500).json('Server Error');
   }
+});
+
+router.get('/', (request, response) => {
+  response.render('../../public/index.html');
 });
 
 module.exports = router;

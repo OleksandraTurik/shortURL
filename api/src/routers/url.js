@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const shortId = require('shortid');
 const validUrl = require('valid-url');
-const Urls = require('./schemas/urls');
+const Urls = require('../db/models/urls');
 
 const router = express.Router();
 
