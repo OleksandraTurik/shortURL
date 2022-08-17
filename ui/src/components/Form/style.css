@@ -19,6 +19,7 @@ form {
 .long-link {
   border: 1px solid #dee6ff;
   background-color: #f9faff;
-  padding: 16px 190px 16px 16px;
+  padding: 16px;
   outline-style: none;
+  width: 100%;
 }

@@ -1,7 +1,13 @@
+import { useAppSelector } from "../../hooks";
 import Form from "../Form";
+import Output from "../Output";
 import "./style.css";
 
 const Main = () => {
+  const { urlInfo, loading, error } = useAppSelector(
+    (state) => state.shortUrlReducer
+  );
+
   return (
     <div className="container">
       <h1 className="title">
@@ -9,7 +15,12 @@ const Main = () => {
       </h1>
       <div className="btn-wrapper">
         <Form />
-        <input className="new-link" type="text" placeholder="Short link" />
+        <Output
+          loading={loading}
+          error={error}
+          value={urlInfo?.shortUrl}
+          clicks={urlInfo?.clicks}
+        />
       </div>
     </div>
   );

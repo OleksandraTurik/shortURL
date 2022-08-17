@@ -1,7 +1,6 @@
 require('dotenv').config();
 const express = require('express');
-const path = require('path');
-const engine = require('consolidate');
+const cors = require('cors');
 const connectDB = require('./db');
 
 // init app
@@ -13,12 +12,7 @@ connectDB();
 // init middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-// static files
-app.use(express.static('public'));
-app.set('views', path.join(__dirname, 'public'));
-app.engine('html', engine.mustache);
-app.set('view engine', 'html');
+app.use(cors());
 
 // api router
 app.use('/api', require('./routers/url'));

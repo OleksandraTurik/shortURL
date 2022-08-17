@@ -18,8 +18,4 @@ router.get('/:urlId', async (request, response) => {
   }
 });
 
-router.get('/', (request, response) => {
-  response.render('../../public/index.html');
-});
-
 module.exports = router;

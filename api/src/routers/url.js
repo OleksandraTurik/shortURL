@@ -35,11 +35,11 @@ router.post('/short', async (request, response) => {
   }
 });
 
-router.post('/validate', async (request, response) => {
-  const { shortUrl } = request.body;
+router.get('/validate', async (request, response) => {
+  const { urlId } = request.query;
 
   try {
-    const url = await Urls.findOne({ shortUrl });
+    const url = await Urls.findOne({ urlId });
     if (url) {
       response.json({ originUrl: url.originUrl });
     } else {
