@@ -1,15 +1,17 @@
-import React, { useState } from "react";
-import { useAppDispatch } from "../../hooks/useAppDispatch";
-import { getShortUrl } from "../../redux/slices/shortUrl";
-import "./style.css";
+import React, { useState } from 'react';
+import './style.css';
 
-const Form = () => {
-  const [inputValue, setInputValue] = useState("");
-  const dispatch = useAppDispatch();
+interface IProps {
+  submitText: string;
+  onSubmit: (value: string) => void;
+}
+
+const Form: React.FC<IProps> = ({ submitText, onSubmit }) => {
+  const [inputValue, setInputValue] = useState('');
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(getShortUrl(inputValue));
+    onSubmit(inputValue);
   };
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
@@ -25,7 +27,7 @@ const Form = () => {
         placeholder="http://type-your-link.here ..."
       />
       <button className="short" type="submit">
-        Short me!
+        {submitText}
       </button>
     </form>
   );

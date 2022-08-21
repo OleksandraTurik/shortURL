@@ -5,6 +5,7 @@
   border-radius: 10px;
   border: 1px solid #f6fbf8;
   outline-style: none;
+  position: relative;
 }
 
 .new-link > input {
@@ -13,4 +14,12 @@
   width: 100%;
   color: #656565;
   text-align: center;
+}
+
+.new-link > .loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f6fbf8;
 }

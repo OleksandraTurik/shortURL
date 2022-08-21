@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  width: 60%;
+  margin: auto;
+}
+
+.title > i {
+  color: #5380ea;
+  font-style: normal;
+}
+
+.title {
+  margin-top: 81px;
+  color: #000000;
+  font-size: 2em;
+}
+
+.btn-wrapper {
+  display: grid;
+  grid-gap: 32px;
+  width: 50%;
+}

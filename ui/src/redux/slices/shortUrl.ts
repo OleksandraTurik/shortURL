@@ -1,6 +1,6 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { api } from "../../api";
-import { IShortURl } from "../../api/types";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { api } from '../../api';
+import { IShortURl } from '../../api/types';
 
 interface IShortUrlStore {
   urlInfo: IShortURl | null;
@@ -16,16 +16,13 @@ const initialState: IShortUrlStore = {
 
 //передаємо префікс(стрінга)
 
-export const getShortUrl = createAsyncThunk(
-  "shortUrl/getShortUrl",
-  async (originUrl: string) => {
-    const res = await api.getShortUrl(originUrl);
-    return res;
-  }
-);
+export const getShortUrl = createAsyncThunk('shortUrl/getShortUrl', async (originUrl: string) => {
+  const res = await api.getShortUrl(originUrl);
+  return res;
+});
 
 export const shortUrlSlice = createSlice({
-  name: "shortUrl",
+  name: 'shortUrl',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -36,7 +33,7 @@ export const shortUrlSlice = createSlice({
     });
     builder.addCase(getShortUrl.rejected, (state, action) => {
       state.loading = false;
-      state.error = action.error.message ?? "Something went wrong"; // щоб не писати тернарний оператор
+      state.error = action.error.message ?? 'Something went wrong'; // щоб не писати тернарний оператор
     });
     builder.addCase(getShortUrl.pending, (state, action) => {
       state.loading = true;

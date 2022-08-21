@@ -10,28 +10,21 @@ router.post('/short', async (request, response) => {
   const { originUrl } = request.body;
   const base = process.env.BASE_URL;
   const urlId = shortId.generate();
-  if (validUrl.isUri(originUrl)) {
-    try {
-      let url = await Urls.findOne({ originUrl });
-      if (url) {
-        response.json(url);
-      } else {
-        const shortUrl = `${base}/${urlId}`;
-        url = new Urls({
-          originUrl,
-          shortUrl,
-          urlId,
-          date: new Date(),
-        });
-        await url.save();
-        response.json(url);
-      }
-    } catch (error) {
-      console.log(error);
-      response.status(500).json('Server Error');
-    }
-  } else {
-    response.status(401).json('invalid url');
+  if (!validUrl.isUri(originUrl)) return response.status(401).json('invalid url');
+  try {
+    let url = await Urls.findOne({ originUrl });
+    if (url) return response.json(url);
+    const shortUrl = `${base}/${urlId}`;
+    url = new Urls({
+      originUrl,
+      shortUrl,
+      urlId,
+    });
+    await url.save();
+    return response.json(url);
+  } catch (error) {
+    console.error(error);
+    return response.status(500).json('Server Error');
   }
 });
 
@@ -40,14 +33,11 @@ router.get('/validate', async (request, response) => {
 
   try {
     const url = await Urls.findOne({ urlId });
-    if (url) {
-      response.json({ originUrl: url.originUrl });
-    } else {
-      response.status(404).json('Not Found');
-    }
+    if (url) return response.json({ originUrl: url.originUrl });
+    return response.status(404).json('Not Found');
   } catch (error) {
-    console.log(error);
-    response.status(500).json('Server Error');
+    console.error(error);
+    return response.status(500).json('Server Error');
   }
 });
 

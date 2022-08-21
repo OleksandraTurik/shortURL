@@ -1,9 +1,11 @@
 .wrapper {
   display: flex;
   justify-content: space-between;
+  padding: 20px;
+  align-items: center;
 }
 
-a {
+.validate-link {
   color: #515151;
   font-size: 16px;
   margin-right: 32px;

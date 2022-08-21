@@ -5,16 +5,13 @@ const router = Router();
 router.get('/:urlId', async (request, response) => {
   try {
     const url = await Urls.findOne({ urlId: request.params.urlId });
-    if (url) {
-      url.clicks += 1;
-      url.save();
-      response.redirect(url.originUrl);
-    } else {
-      response.status(404).json('Not Found');
-    }
+    if (!url) return response.status(404).json('Not Found');
+    url.clicks += 1;
+    url.save();
+    return response.redirect(url.originUrl);
   } catch (error) {
-    console.log(error);
-    response.status(500).json('Server Error');
+    console.error(error);
+    return response.status(500).json('Server Error');
   }
 });
 
