@@ -1,0 +1,67 @@
+paths:
+  /short:
+    post:
+      tags:
+        - URL
+      summary: build short url
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: long url
+          required: true
+          schema:
+            $ref: '#/definitions/signUp'
+      responses:
+        '200':
+          description: An object with url details
+        '401':
+          description: Invalid long url
+        '500':
+          description: Server Error
+  /validate:
+    get:
+      tags:
+        - URL
+      summary: validate short url
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: urlId
+          required: true
+          schema:
+            type: 'string'
+      responses:
+        '200':
+          description: Origin url
+        '404':
+          description: Url not found
+        '500':
+          description: Server Error
+  /{urlId}:
+    get:
+      tags:
+        - URL
+      summary: redirect to origin url
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: urlId
+          required: true
+          schema:
+            type: 'string'
+      responses:
+        '302':
+          description: redirect to origin url
+        '404':
+          description: Url not found
+        '500':
+          description: Server Error
+definitions:
+  signUp:
+    type: object
+    properties:
+      origUrl:
+        type: string

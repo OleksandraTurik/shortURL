@@ -1,0 +1,1 @@
+worker: sh -c 'cd api && yarn start'

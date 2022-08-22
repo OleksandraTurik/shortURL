@@ -3,7 +3,13 @@ import Logo from '../../../assets/logo.png';
 
 import './style.css';
 
+const DOC_LINK = 'http://localhost:3000/api-doc';
+
 const Header = () => {
+  const handleClick = () => {
+    window.open(DOC_LINK, '_blank');
+  };
+
   return (
     <div className="wrapper">
       <Link to="/">
@@ -13,7 +19,9 @@ const Header = () => {
         <Link className="validate-link" to="/validate">
           Validate link
         </Link>
-        <button className="btn-docs">Docs</button>
+        <button onClick={handleClick} className="btn-docs">
+          Docs
+        </button>
       </div>
     </div>
   );

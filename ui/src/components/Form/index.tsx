@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import { Field, Formik, Form, ErrorMessage } from 'formik';
+import { ValidateSchema } from './helper/ValidateSchema';
+import React from 'react';
 import './style.css';
 
 interface IProps {
@@ -6,31 +8,35 @@ interface IProps {
   onSubmit: (value: string) => void;
 }
 
-const Form: React.FC<IProps> = ({ submitText, onSubmit }) => {
-  const [inputValue, setInputValue] = useState('');
+interface MyFormValues {
+  originLink: string;
+}
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    onSubmit(inputValue);
+export const ShortURLForm: React.FC<IProps> = ({ submitText, onSubmit }) => {
+  const handleSubmit = (values: MyFormValues, actions: any) => {
+    console.log(values);
+    onSubmit(values.originLink);
+    actions.setSubmitting(false);
   };
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
-  };
+
+  const initialValues: MyFormValues = { originLink: '' };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        onChange={handleChange}
-        value={inputValue}
-        className="long-link"
-        type="text"
-        placeholder="http://type-your-link.here ..."
-      />
-      <button className="short" type="submit">
-        {submitText}
-      </button>
-    </form>
+    <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={ValidateSchema}>
+      {({ touched, errors, isSubmitting }) => (
+        <Form className="form">
+          <Field
+            className={`long-link ${touched.originLink && errors.originLink ? 'is-invalid' : ''}`}
+            type="originLink"
+            name="originLink"
+            placeholder="http://type-your-link.here ..."
+          />
+          <ErrorMessage component="div" name="originLink" className="invalid-feedback" />
+          <button className="short" type="submit">
+            {submitText}
+          </button>
+        </Form>
+      )}
+    </Formik>
   );
 };
-
-export default Form;

@@ -1,7 +1,9 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const swaggerUI = require('swagger-ui-express');
 const connectDB = require('./db');
+const spec = require('./doc');
 
 // init app
 const app = express();
@@ -13,7 +15,8 @@ connectDB();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
-
+// api documentation
+app.use('/api-doc', swaggerUI.serve, swaggerUI.setup(spec));
 // api router
 app.use('/api', require('./routers/url'));
 // initial router

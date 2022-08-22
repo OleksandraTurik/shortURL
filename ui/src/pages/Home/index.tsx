@@ -1,4 +1,4 @@
-import Form from '../../components/Form';
+import { ShortURLForm } from '../../components/Form';
 import Output from '../../components/Output';
 import { useAppSelector } from '../../hooks';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
@@ -19,7 +19,7 @@ const Home = () => {
         Get the <i>short</i> link as you go 👋
       </h1>
       <div className="btn-wrapper">
-        <Form submitText="Short me" onSubmit={handleSubmit} />
+        <ShortURLForm submitText="Short me" onSubmit={handleSubmit} />
         <Output
           loading={loading}
           error={error}

@@ -1,0 +1,27 @@
+components:
+  schemas:
+    URL:
+      type: object
+      required:
+        - urlId
+        - origUrl
+        - shortUrl
+        - clicks
+      properties:
+        urlId:
+          type: string
+          description: The url short id
+        origUrl:
+          type: string
+          description: The origin long url
+        shortUrl:
+          type: string
+          description: The short url based on urlId
+        clicks:
+          type: number
+          description: The count of clicks on url
+      example:
+        urlId: 1xy54fUx
+        origUrl: 'https://www.google.com'
+        shortUrl: 'https://localhost:3000/1xy54fUx'
+        clicks: 14
