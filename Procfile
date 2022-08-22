@@ -1,1 +1,1 @@
-worker: cd api && yarn start
+worker: cd api && npm start
