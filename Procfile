@@ -1,1 +1,1 @@
-worker: cd api && npm start
+web: cd api && npm start
