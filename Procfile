@@ -1,1 +1,1 @@
-worker: sh -c 'cd api && yarn start'
+worker: cd appdir && yarn start
