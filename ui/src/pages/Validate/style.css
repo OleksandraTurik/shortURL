@@ -21,5 +21,6 @@
 .btn-wrapper {
   display: grid;
   grid-gap: 32px;
-  width: 50%;
+  max-width: 400px;
+  width: 100%;
 }

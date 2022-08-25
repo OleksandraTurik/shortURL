@@ -13,8 +13,6 @@ const initialState: IValidateUrlStore = {
   error: null,
 };
 
-//передаємо префікс(стрінга)
-
 export const getValidateUrl = createAsyncThunk(
   'validateUrl/getValidateUrl',
   async (shortUrl: string) => {
@@ -35,7 +33,7 @@ export const validateUrlSlice = createSlice({
     });
     builder.addCase(getValidateUrl.rejected, (state, action) => {
       state.loading = false;
-      state.error = action.error.message ?? 'Something went wrong'; // щоб не писати тернарний оператор
+      state.error = action.error.message ?? 'Something went wrong';
     });
     builder.addCase(getValidateUrl.pending, (state) => {
       state.loading = true;

@@ -14,7 +14,6 @@ interface MyFormValues {
 
 export const ShortURLForm: React.FC<IProps> = ({ submitText, onSubmit }) => {
   const handleSubmit = (values: MyFormValues, actions: any) => {
-    console.log(values);
     onSubmit(values.originLink);
     actions.setSubmitting(false);
   };

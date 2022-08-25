@@ -14,8 +14,6 @@ const initialState: IShortUrlStore = {
   error: null,
 };
 
-//передаємо префікс(стрінга)
-
 export const getShortUrl = createAsyncThunk('shortUrl/getShortUrl', async (originUrl: string) => {
   const res = await api.getShortUrl(originUrl);
   return res;
@@ -33,9 +31,9 @@ export const shortUrlSlice = createSlice({
     });
     builder.addCase(getShortUrl.rejected, (state, action) => {
       state.loading = false;
-      state.error = action.error.message ?? 'Something went wrong'; // щоб не писати тернарний оператор
+      state.error = action.error.message ?? 'Something went wrong';
     });
-    builder.addCase(getShortUrl.pending, (state, action) => {
+    builder.addCase(getShortUrl.pending, (state) => {
       state.loading = true;
       state.error = null;
     });

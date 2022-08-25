@@ -15,6 +15,7 @@ router.post('/short', async (request, response) => {
     let url = await Urls.findOne({ originUrl });
     if (url) return response.json(url);
     const shortUrl = `${base}/${urlId}`;
+    // invoking the Url model and saving to the DB
     url = new Urls({
       originUrl,
       shortUrl,

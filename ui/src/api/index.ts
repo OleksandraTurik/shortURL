@@ -15,7 +15,7 @@ export const api = {
     return data;
   },
   getOriginUrl: async (shortUrl: string) => {
-    const urlId = new URL(shortUrl).pathname.split('/').pop(); //отримаємо короткий урл і шлях з нього
+    const urlId = new URL(shortUrl).pathname.split('/').pop();
     const { data } = await shortApi.get<{ originUrl: string }>('/validate', {
       params: { urlId },
     });

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// instantiate a mongoose schema
 const URLSchema = new mongoose.Schema(
   {
     urlId: {
@@ -25,4 +26,5 @@ const URLSchema = new mongoose.Schema(
   },
 );
 
+// create a model from schema and export it
 module.exports = mongoose.model('Url', URLSchema);

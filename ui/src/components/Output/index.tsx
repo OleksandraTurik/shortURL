@@ -2,7 +2,7 @@ import React from 'react';
 import { Loading } from '../Loading';
 import './style.css';
 
-interface IOutputprops {
+interface IOutputProps {
   loading: boolean;
   error: string | null;
   value?: string;
@@ -10,7 +10,7 @@ interface IOutputprops {
   textPlaceholder: string;
 }
 
-const Output: React.FC<IOutputprops> = ({ loading, error, value, textPlaceholder }) => {
+const Output: React.FC<IOutputProps> = ({ loading, error, value, textPlaceholder }) => {
   return (
     <div className="new-link">
       <div className="loading">
